@@ -1,4 +1,4 @@
-// LLM model database sourced from https://github.com/AlexsJones/llmfit
+
 // Dataset: hf_models.json (backup from 2026-02-19)
 
 export const LLM_MODELS = [
