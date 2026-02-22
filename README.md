@@ -10,9 +10,9 @@ So I built the tool I wished I had. You pick your parts - GPU, RAM, whatever you
 
 ## What it does
 
-**Interactive PC builder** with drag-and-drop part selection across 8 categories (CPU, GPU, motherboard, RAM, storage, PSU, case, cooler). Real specs, real prices.
+**Interactive PC builder** with drag-and-drop part selection across 8 categories (CPU, GPU, motherboard, RAM, storage, PSU, case, cooler). Parts and pricing sourced from [PCPartPicker.com](https://www.pcpartpicker.com).
 
-**LLM compatibility checker** that instantly shows which models your build can run:
+**LLM compatibility checker** powered by the model database from [llmfit](https://github.com/AlexsJones/llmfit). Instantly shows which models your build can run:
 - **GPU Inference** (green) - model fits entirely in VRAM, fastest option
 - **CPU + GPU Offload** (yellow) - spills into system RAM, GPU still assists
 - **CPU Only** (blue) - runs purely on system RAM when no GPU is selected
@@ -35,6 +35,11 @@ npm run dev
 ## Built with
 
 React 19, Vite, Tailwind CSS, shadcn/ui, @dnd-kit
+
+## Data sources
+
+- **Parts & pricing** - [PCPartPicker.com](https://www.pcpartpicker.com)
+- **LLM model specs** - [AlexsJones/llmfit](https://github.com/AlexsJones/llmfit)
 
 ---
 

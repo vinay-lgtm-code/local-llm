@@ -159,7 +159,7 @@ export default function App() {
           {/* Footer */}
           <footer className="shrink-0 border-t border-border px-4 py-1.5 flex items-center justify-between text-[10px] text-muted-foreground bg-card/30">
             <p>
-              PartForge &middot; Prices & specs from{' '}
+              PartForge &middot; Parts & pricing from{' '}
               <a
                 href="https://www.pcpartpicker.com"
                 target="_blank"
@@ -167,6 +167,15 @@ export default function App() {
                 className="text-primary hover:underline"
               >
                 PCPartPicker.com
+              </a>
+              {' '}&middot; LLM data from{' '}
+              <a
+                href="https://github.com/AlexsJones/llmfit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                llmfit
               </a>
             </p>
             <p>For educational / demo purposes only</p>
