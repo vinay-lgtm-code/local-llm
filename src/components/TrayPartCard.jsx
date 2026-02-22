@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { GripVertical, Star } from 'lucide-react';
 import { CATEGORY_META } from '@/data/parts';
 
-export default function TrayPartCard({ part, category, isSelected, index }) {
+export default function TrayPartCard({ part, category, isSelected, onRemove, index }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: part.id,
     data: { part, category },
@@ -29,11 +29,12 @@ export default function TrayPartCard({ part, category, isSelected, index }) {
         'relative flex items-center gap-2 p-2 rounded-lg border transition-all duration-200 tray-card-enter',
         isDragging && 'opacity-40 scale-95 z-50',
         isSelected
-          ? 'border-primary/50 bg-primary/10'
+          ? 'border-primary/50 bg-primary/10 cursor-pointer'
           : 'border-border/60 bg-card/60 hover:bg-card hover:border-border',
       )}
       {...attributes}
       {...listeners}
+      onClick={isSelected ? () => onRemove(category) : undefined}
     >
       {/* Drag handle */}
       <div className="shrink-0 text-muted-foreground/30 cursor-grab active:cursor-grabbing">
@@ -45,7 +46,7 @@ export default function TrayPartCard({ part, category, isSelected, index }) {
         <div className="flex items-center gap-1 mb-0.5">
           <span className="text-[9px] font-medium text-muted-foreground uppercase">{part.brand}</span>
           {isSelected && (
-            <span className="text-[8px] font-bold text-primary bg-primary/20 px-1 rounded">IN USE</span>
+            <span className="text-[8px] font-bold text-primary bg-primary/20 px-1 rounded">CLICK TO REMOVE</span>
           )}
         </div>
         <p className="text-xs font-semibold text-foreground leading-tight truncate">{part.name}</p>

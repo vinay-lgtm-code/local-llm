@@ -5,7 +5,7 @@ import { PARTS, CATEGORY_META } from '@/data/parts';
 import TrayPartCard from './TrayPartCard';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-export default function PartsTray({ currentCategory, selectedParts }) {
+export default function PartsTray({ currentCategory, selectedParts, onRemovePart }) {
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('popular');
   const [showSort, setShowSort] = useState(false);
@@ -113,6 +113,7 @@ export default function PartsTray({ currentCategory, selectedParts }) {
               part={part}
               category={currentCategory}
               isSelected={selectedParts[currentCategory]?.id === part.id}
+              onRemove={onRemovePart}
               index={index}
             />
           ))}

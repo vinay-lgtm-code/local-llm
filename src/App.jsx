@@ -131,6 +131,7 @@ export default function App() {
               <PartsTray
                 currentCategory={currentCategory}
                 selectedParts={selectedParts}
+                onRemovePart={handleRemovePart}
               />
             </aside>
 
