@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Dark by default */
+  --background: oklch(0.13 0.005 285);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.17 0.005 285);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.17 0.005 285);
+  --popover-foreground: oklch(0.95 0 0);
+  --primary: oklch(0.55 0.2 285);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.22 0.01 285);
+  --secondary-foreground: oklch(0.9 0 0);
+  --muted: oklch(0.2 0.005 285);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.22 0.01 285);
+  --accent-foreground: oklch(0.95 0 0);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.25 0.01 285);
+  --input: oklch(0.22 0.01 285);
+  --ring: oklch(0.55 0.2 285);
+  --chart-1: oklch(0.55 0.2 285);
+  --chart-2: oklch(0.7 0.15 340);
+  --chart-3: oklch(0.7 0.15 155);
+  --chart-4: oklch(0.8 0.15 85);
+  --chart-5: oklch(0.7 0.15 230);
+  --sidebar: oklch(0.15 0.005 285);
+  --sidebar-foreground: oklch(0.95 0 0);
+  --sidebar-primary: oklch(0.55 0.2 285);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.22 0.01 285);
+  --sidebar-accent-foreground: oklch(0.95 0 0);
+  --sidebar-border: oklch(0.25 0.01 285);
+  --sidebar-ring: oklch(0.55 0.2 285);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.15 0.005 285);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.01 285);
+  border-radius: 3px;
+}
+
+/* ======== Canvas Engineering Grid ======== */
+.canvas-grid {
+  background-image:
+    linear-gradient(oklch(0.3 0.01 285 / 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.3 0.01 285 / 0.15) 1px, transparent 1px),
+    linear-gradient(oklch(0.3 0.01 285 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.3 0.01 285 / 0.08) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+}
+
+/* ======== Drag Overlay ======== */
+.dragging-overlay {
+  opacity: 0.95;
+  transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(108, 92, 231, 0.4);
+  z-index: 1000;
+}
+
+/* ======== Slot Pulse (active slot) ======== */
+@keyframes slotPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px currentColor;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor;
+    opacity: 0.85;
+  }
+}
+.slot-pulse {
+  animation: slotPulse 1.5s ease-in-out infinite;
+}
+
+/* ======== Step Progress Pulse ======== */
+.step-pulse {
+  animation: slotPulse 1.5s ease-in-out infinite;
+}
+
+/* ======== Breathe (filled parts) ======== */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+.breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+/* ======== Part Placed (drop animation) ======== */
+@keyframes partPlaced {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.part-placed {
+  animation: partPlaced 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ======== Glow Burst (on drop) ======== */
+@keyframes glowBurst {
+  0% { box-shadow: 0 0 0 0 currentColor; }
+  50% { box-shadow: 0 0 24px 4px currentColor; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.glow-burst {
+  animation: glowBurst 600ms ease-out;
+}
+
+/* ======== Tray Card Enter (staggered slide-in) ======== */
+@keyframes traySlideIn {
+  0% { transform: translateX(-8px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.tray-card-enter {
+  animation: traySlideIn 200ms ease-out both;
+}
+
+/* ======== Reduced Motion ======== */
+@media (prefers-reduced-motion: reduce) {
+  .slot-pulse,
+  .step-pulse,
+  .breathe,
+  .part-placed,
+  .glow-burst,
+  .tray-card-enter {
+    animation: none !important;
+  }
+  .dragging-overlay {
+    transform: none !important;
+  }
+}
